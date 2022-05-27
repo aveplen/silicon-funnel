@@ -1,0 +1,6 @@
+telegram:
+  token: <bot token>
+
+imapc:
+  addr: 127.0.0.1:7070
+  key: dmVyeSBzZWNyZXQgcGFzc3dvcmQgdGhhdCBub29uZSBrbm93cw==

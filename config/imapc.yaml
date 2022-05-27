@@ -1,0 +1,14 @@
+database:
+  host: 127.0.0.1
+  port: 5432
+  name: imap_db
+  user: root
+  password: root
+
+imapc:
+  addr: 0.0.0.0:7070
+  whitelist:
+    - dmVyeSBzZWNyZXQgcGFzc3dvcmQgdGhhdCBub29uZSBrbm93cw==
+
+poller:
+  cron: "* * * * *"

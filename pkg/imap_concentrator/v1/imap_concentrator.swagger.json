@@ -1,0 +1,697 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "imap_concentrator/v1/imap_concentrator.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ImapConcentrator"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/client_id": {
+      "get": {
+        "operationId": "ImapConcentrator_AssignUniqueClientID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignUniqueClientIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/mailbox": {
+      "post": {
+        "operationId": "ImapConcentrator_GetMailboxV12",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMailboxV1Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetMailboxV1Request"
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/mailbox/all": {
+      "post": {
+        "operationId": "ImapConcentrator_ListMailboxesV12",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListMailboxesV1Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListMailboxesV1Request"
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/poll": {
+      "post": {
+        "operationId": "ImapConcentrator_PollV12",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PollV1Request"
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/sub": {
+      "post": {
+        "operationId": "ImapConcentrator_SubscribeToChatNotificationsV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NotificationV1"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NotificationV1"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SubscribeToChatNotificationsV1Request"
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/unsub": {
+      "post": {
+        "operationId": "ImapConcentrator_UnsubscribeFromNotificationsV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UnsubscribeFromNotificationsV1Request"
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/unsub/{clientID}": {
+      "get": {
+        "operationId": "ImapConcentrator_UnsubscribeFromNotificationsV12",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clientID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/{chatID}/mailbox": {
+      "get": {
+        "operationId": "ImapConcentrator_ListMailboxesV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListMailboxesV1Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      },
+      "delete": {
+        "operationId": "ImapConcentrator_DeleteMailboxV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "mailboxID",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      },
+      "post": {
+        "operationId": "ImapConcentrator_InsertMailboxV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mailbox": {
+                  "$ref": "#/definitions/v1MailboxV1"
+                }
+              },
+              "description": "Request to insert new mailbox into tracking list and assign it to chat id."
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      },
+      "put": {
+        "operationId": "ImapConcentrator_UpdateMailboxV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mailbox": {
+                  "$ref": "#/definitions/v1MailboxV1"
+                }
+              },
+              "description": "Request to update mailbox with given database id from tracking list."
+            }
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/{chatID}/mailbox/{mailboxID}": {
+      "get": {
+        "operationId": "ImapConcentrator_GetMailboxV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMailboxV1Response"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "mailboxID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/{chatID}/poll": {
+      "get": {
+        "operationId": "ImapConcentrator_PollV1",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Ack"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    },
+    "/api/v1/{chatID}/sub/{clientID}": {
+      "get": {
+        "operationId": "ImapConcentrator_SubscribeToChatNotificationsV12",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1NotificationV1"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1NotificationV1"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chatID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "clientID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ImapConcentrator"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Ack": {
+      "type": "object",
+      "description": "Model for acknowledge."
+    },
+    "v1AssignUniqueClientIDResponse": {
+      "type": "object",
+      "properties": {
+        "clientID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1GetMailboxV1Request": {
+      "type": "object",
+      "properties": {
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mailboxID": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "Get info about particular mailbox by id"
+    },
+    "v1GetMailboxV1Response": {
+      "type": "object",
+      "properties": {
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mailbox": {
+          "$ref": "#/definitions/v1MailboxV1"
+        }
+      }
+    },
+    "v1ListMailboxesV1Request": {
+      "type": "object",
+      "properties": {
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "Get a list of mailboxes assigned to given chat id."
+    },
+    "v1ListMailboxesV1Response": {
+      "type": "object",
+      "properties": {
+        "mailboxes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MailboxV1"
+          }
+        }
+      },
+      "description": "List of mailboxes. Includes database id's for possible removal."
+    },
+    "v1MailboxV1": {
+      "type": "object",
+      "properties": {
+        "mailboxID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "Model for mailbox version 1."
+    },
+    "v1NotificationV1": {
+      "type": "object",
+      "properties": {
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Model for notification version 1."
+    },
+    "v1PollV1Request": {
+      "type": "object",
+      "properties": {
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "Request to poll mailboxes assigned to given chat id asap. (not waiting for cron)"
+    },
+    "v1SubscribeToChatNotificationsV1Request": {
+      "type": "object",
+      "properties": {
+        "clientID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "chatID": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "Subscribe to notifications from mailboxes assigned to unique telegram chat\nid. Tg chat id serves the purpose of api access token. You cannot access\nthis endpoint unless you initialized profile via bot's /start command.\n(to be used by gateway)"
+    },
+    "v1UnsubscribeFromNotificationsV1Request": {
+      "type": "object",
+      "properties": {
+        "clientID": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "description": "Graceful unsubscription."
+    }
+  }
+}
